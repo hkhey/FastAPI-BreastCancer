@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer Diagnosis Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        #wrap {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .frame2 {
+            margin-top: 20px;
+        }
+
+        .login {
+            text-align: center;
+        }
+
+        .entryForm {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .entryForm th,
+        .entryForm td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .entryForm input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btns {
+            text-align: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-clear {
+            background-color: #ccc;
+        }
+
+        .btn-clear:hover {
+            background-color: #ddd;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .prediction-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>Predict Cancer Diagnosis</h1>
+        <section id="cancer" class="frame2">
+            <div class="login">
+                <form action="{{ url_for('predict') }}" method="post">
+                    <table class="entryForm">
+                        <tr>
+                            <th>Perimeter Mean (cm):</th>
+                            <td><input type="text" name="perimeter_mean" placeholder="Perimeter Mean (cm)" /></td>
+                        </tr>
+                        <tr>
+                            <th>Area Mean (cm²):</th>
+                            <td><input type="text" name="area_mean" placeholder="Area Mean (cm²)" /></td>
+                        </tr>
+                        <tr>
+                            <th>Area SE (cm²):</th>
+                            <td><input type="text" name="area_se" placeholder="Area SE (cm²)" /></td>
+                        </tr>
+                        <tr>
+                            <th>Perimeter Worst (cm):</th>
+                            <td><input type="text" name="perimeter_worst" placeholder="Perimeter Worst (cm)" /></td>
+                        </tr>
+                        <tr>
+                            <th>Area Worst (cm²):</th>
+                            <td><input type="text" name="area_worst" placeholder="Area Worst (cm²)" /></td>
+                        </tr>
+                    </table>
+                    <div class="btns">
+                        <button type="reset" class="btn btn-clear">Reset</button>
+                        <button type="submit" class="btn btn-primary btn-block">Predict</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <br>
+        <br>
+        <div class="result">
+            <p class="prediction-text">{{ prediction_text }}</p>
+        </div>
+    </div>
+</body>
+</html>
